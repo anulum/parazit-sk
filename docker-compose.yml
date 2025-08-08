@@ -1,4 +1,20 @@
 version: '3.8'
 
 services:
-  # PostgreSQL Data
+  api:
+    build: ./services/api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - ENV=development
+
+  web:
+    build: ./services/web
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    environment:
+      - NEXT_PUBLIC_API_URL=http://api:8000
