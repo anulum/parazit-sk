@@ -1,4 +1,41 @@
 name: Full Consistency Check
 
 on:
-  pull_requ
+  pull_request:
+    branches:
+      - 'chore/verify-build-consistency'
+
+jobs:
+  build_and_validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate Docker Compose build
+        run: |
+          echo "Attempting to build all services..."
+          docker compose build
+          echo "Docker Compose build successful!"
+
+  runtime_health_check:
+    runs-on: ubuntu-latest
+    needs: build_and_validate
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run services in background
+        run: docker compose up -d
+
+      - name: Wait for services to start
+        run: sleep 20
+
+      - name: Display running containers
+        run: docker compose ps
+
+      - name: Check Backend API health
+        run: curl -f http://localhost:8000/ || exit 1
+
+      - name: Check Frontend health
+        run: curl -f http://localhost:3000/ || exit 1
