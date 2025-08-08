@@ -25,6 +25,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Create .env file from template
+        run: cp .env.example .env
+
       - name: Run services in background
         run: docker compose up -d
 
