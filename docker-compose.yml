@@ -1,4 +1,20 @@
-version: '3.8'
-
 services:
-  # PostgreSQL Data
+  api:
+    build:
+      context: ./services/api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./services/api:/app
+    env_file:
+      - .env
+
+  web:
+    build:
+      context: ./services/web
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./services/web:/app
+    depends_on:
+      - api
