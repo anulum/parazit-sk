@@ -1,2 +1,8 @@
-# Gorila.sk seed data for Parazit.sk
-# Copyrigh
+id: gorila
+title: "Gorila Case"
+summary: "Summary of the Gorila case"
+severity: 8
+status: "investigated"
+damageEur: 1000000
+sourceUrls:
+  - "https://example.com/source1"
