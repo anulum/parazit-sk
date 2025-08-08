@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
+  // The output: 'standalone' line has been removed
 };
 
 export default nextConfig;
