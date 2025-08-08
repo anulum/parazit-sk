@@ -3,7 +3,12 @@ name: Full Consistency Check
 on:
   push:
     branches:
-      - 'chore/verify-build-consistency'
+      - main
+      - 'feat/*'
+      - 'chore/*'
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build_and_validate:
