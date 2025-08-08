@@ -8,7 +8,7 @@ interface CaseSummary {
 async function getCases(): Promise<CaseSummary[]> {
   try {
     const res = await fetch('http://api:8000/api/v1/cases', {
-      cache: 'no-store' 
+      cache: 'no-store'
     });
 
     if (!res.ok) {
@@ -31,10 +31,10 @@ export default async function HomePage() {
         <h1 style={{ fontSize: '3rem' }}>Parazit.sk</h1>
         <p style={{ color: '#666' }}>Platforma pre transparentné Slovensko</p>
       </header>
-      
+
       <section>
-        <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>Preheļad monitorovaný�h káuz</h2>
-        
+        <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>Prehľad monitorovaných káuz</h2>
+
         {cases.length > 0 ? (
           <div style={{ display: 'grid', gap: '1.5rem' }}>
             {cases.map((caseItem) => (
@@ -46,7 +46,7 @@ export default async function HomePage() {
             ))}
           </div>
         ) : (
-          <p>Nepodarilo sa načítaļ dáta o kauzách alebo žiadne kauzzneboli nájädené. Skontrolujte, či je backend API spustené a či existujú dátové súbory.</p>
+          <p>Nepodarilo sa načítať dáta o kauzách alebo žiadne kauzy neboli nájdené. Skontrolujte, či je backend API spustené a či existujú dátové súbory.</p>
         )}
       </section>
     </main>
