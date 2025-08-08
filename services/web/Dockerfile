@@ -8,6 +8,7 @@ RUN npm install
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
+COPY package.json ./
 COPY ./app ./app
 COPY ./public ./public
 RUN npm run build
